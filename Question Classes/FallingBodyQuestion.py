@@ -1,3 +1,10 @@
 
-from Question.py import Question
+from Question import Question
+
+class FallingBodyQuestion():
+
+    def __init__(self) -> None:
+        pass
+
+
 
