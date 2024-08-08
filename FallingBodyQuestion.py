@@ -17,6 +17,9 @@ class FallingBodyQuestion(Question):
         self.__height = None
         self.__possible_unknowns = ["time","height"]
         self.__time_in_air = 0
+        
+
+        self.__question_message = None
 
     def generate_values(self,earth_gravity):
         self.__height = random.randint(30,70)
@@ -36,10 +39,17 @@ class FallingBodyQuestion(Question):
     def choose_unknown(self):
         self.__unknown = random.choice(self.__possible_unknowns)
 
-    def print_question(self):
+    def get_question_text(self):
+        
 
-        print(f" A ball has a {self.__unknown} of {self.__height}m under Earth's gravity.  ")
-        print(f"Calculate ")
+        if self.__unknown == "time":
+            self.__question_message = f"On Earth, a ball is dropped from a height of {self.__height} and lands at collides with the ground at time t, find t ({self.__max_marks} marks)"
+        elif self.__unknown == "height":
+            self.__question_message = f"On Earth, a ball is dropped from height h and lands at collides with the ground at time {self.__time_in_air}, find h ({self.__max_marks} marks)"
+
+        return self.__question_message
+
+            
         
 
 
