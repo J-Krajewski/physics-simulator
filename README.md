@@ -14,3 +14,7 @@ This program aims to merge physics simulations with mechanics questions to enabl
 This library is used to show the physics sim
 
 ###
+
+### Future Work
+- Starting velocity/Final Velocity questions
+
