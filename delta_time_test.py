@@ -79,18 +79,17 @@ def ball_hit_ground(arbiter, space, data):
         
         # Remove the ball from the space
         space.remove(ball_shape, ball_shape.body)
-        ball_alive = False
+        
 
     return True  # Return True to allow the physics simulation to proceed
 
 def main():
     global user_input
-    global ball_alive
     pygame.init()
 
     global calculated_answer
     calculated_answer = calc_time_in_air(floor_y_meters - ball_y_meters, gravity=EARTH_GRAVITY)
-    ball_alive = False
+    
     
     screen = pygame.display.set_mode((1600, 1200))  # Adjusted height for the question
     pygame.display.set_caption("Physics Simulation with Question")
@@ -133,7 +132,7 @@ def main():
                     user_input += event.unicode  # Append new character
 
         ticks_to_next_ball -= 1
-        if ticks_to_next_ball <= 0 and ball_alive == False:
+        if ticks_to_next_ball <= 0 :
             ticks_to_next_ball = 25
             ball_shape = add_ball(space)
             balls.append(ball_shape)
