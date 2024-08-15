@@ -40,14 +40,30 @@ class FallingBodyQuestion(Question):
         self.__unknown = random.choice(self.__possible_unknowns)
 
     def get_question_text(self):
-        
-
         if self.__unknown == "time":
-            self.__question_message = f"On Earth, a ball is dropped from a height of {self.__height} and lands at collides with the ground at time t, find t ({self.__max_marks} marks)"
+            self.__question_message = f"On Earth, a ball is dropped from a height of {self.__height} and lands at collides with the ground at time t, find t ({self._max_marks} marks)"
         elif self.__unknown == "height":
-            self.__question_message = f"On Earth, a ball is dropped from height h and lands at collides with the ground at time {self.__time_in_air}, find h ({self.__max_marks} marks)"
+            self.__question_message = f"On Earth, a ball is dropped from height h and lands at collides with the ground at time {self.__time_in_air}, find h ({self._max_marks} marks)"
 
         return self.__question_message
+    
+    def get_floor_y(self):
+        return  self.__floor_y
+    
+    def get_floor_x(self):
+        return  self.__floor_x
+    
+    def get_ball_y(self):
+        return  self.__ball_y
+    
+    def get_ball_x(self):
+        return  self.__ball_x
+    
+    def get_ball_radius(self):
+        return  self.__ball_radius
+    
+
+   
 
             
         
