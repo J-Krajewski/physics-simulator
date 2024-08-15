@@ -18,3 +18,8 @@ This library is used to show the physics sim
 ### Future Work
 - Starting velocity/Final Velocity questions
 
+
+
+## Issues 
+- Too many balls spawning 
+- error in estimated time 

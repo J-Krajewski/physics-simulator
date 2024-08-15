@@ -76,7 +76,7 @@ def draw_text(screen, text, position, font, color=(0, 0, 0)):
     screen.blit(text_surface, position)
 
 def ball_hit_ground(arbiter, space, data):
-    global correct_answer, user_input
+    global correct_answer, user_input, ball_is_alive
 
     # This function is called when the ball hits the ground
     if arbiter.is_first_contact:
@@ -93,6 +93,7 @@ def ball_hit_ground(arbiter, space, data):
         
         # Remove the ball from the space
         space.remove(ball_shape, ball_shape.body)
+        ball_is_alive = False
         
 
     return True  # Return True to allow the physics simulation to proceed
@@ -117,14 +118,28 @@ def main():
 
     draw_options = pymunk.pygame_util.DrawOptions(screen)
     font = pygame.font.Font(None, 18)  # Font for rendering text
-
+    
+    ball_is_alive = False
     # Collision handler to detect when a ball hits the ground
     handler = space.add_collision_handler(0, 0)
     handler.begin = ball_hit_ground
 
     previous_time = pygame.time.get_ticks()
     ticks_to_next_ball = 10
+    
+
+    
+
+
     while True:
+        if not ball_is_alive:
+            ball_shape = add_ball(space)
+            balls.append(ball_shape)
+            ball_is_alive = True
+        else:
+            ball_is_alive = False
+
+
         current_time = pygame.time.get_ticks()
         delta_time = (current_time - previous_time) / 1000.0  # Convert milliseconds to seconds
         previous_time = current_time
@@ -145,11 +160,11 @@ def main():
                 else:
                     user_input += event.unicode  # Append new character
 
-        ticks_to_next_ball -= 1
-        if ticks_to_next_ball <= 0 :
-            ticks_to_next_ball = 25
-            ball_shape = add_ball(space)
-            balls.append(ball_shape)
+        #ticks_to_next_ball -= 1
+        #if ticks_to_next_ball <= 0 :
+        #    ticks_to_next_ball = 25
+        #    ball_shape = add_ball(space)
+        #    balls.append(ball_shape)
 
         # Step the physics simulation with delta time
         space.step(delta_time)
